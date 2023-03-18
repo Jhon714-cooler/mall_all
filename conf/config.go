@@ -6,6 +6,7 @@ type Config struct {
 	Mysql        Mysql        `mapstructure:"mysql"`
 	Redis        Redis        `mapstructure:"Redis"`
 	Es			 Es           `mapstructure:"Es"`
+	Jwt			Jwt           `mapstructure:"Jwt"`
 	
 }
 
