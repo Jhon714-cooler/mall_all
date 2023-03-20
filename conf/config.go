@@ -26,7 +26,7 @@ type Redis struct{
 	RedisDb      string `mapstructure:"RedisDb"`
 	RedisAddr    string `mapstructure:"RedisAddr"`
 	RedisPw		 string `mapstructure:"RedisPw"`
-	RedisDbName  string `mapstructure:"RedisName"`
+	RedisDbName  string `mapstructure:"RedisDbName"`
 }
 type Es struct{
 	EsHost	string `mapstructure:"EsHost"`

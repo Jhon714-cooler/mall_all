@@ -9,8 +9,7 @@ import (
 )
 func Redis() {
 	
-
-	db,err := strconv.Atoi(global.Config.Redis.RedisDb) //strconv.ParseInt
+	db,err := strconv.Atoi(global.Config.Redis.RedisDbName) //strconv.ParseInt
 	if err != nil {
 		log.Panic("RdToerr:",err)
 	}

@@ -8,7 +8,7 @@ import (
 
 func Mysql()  {
 		//MySQL
-		pathRead := strings.Join([]string{global.Config.Mysql.Username, ":", global.Config.Mysql.Password,global.Config.Mysql.Url},"")
-		pathWrite := strings.Join([]string{global.Config.Mysql.Username, ":", global.Config.Mysql.Password,global.Config.Mysql.Url},"")
+		pathRead := strings.Join([]string{global.Config.Mysql.Username, ":", global.Config.Mysql.Password,"@",global.Config.Mysql.Url},"")
+		pathWrite := strings.Join([]string{global.Config.Mysql.Username, ":", global.Config.Mysql.Password,"@",global.Config.Mysql.Url},"")
 		dao.Database(pathRead, pathWrite)
 }
