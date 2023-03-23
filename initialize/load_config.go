@@ -7,7 +7,7 @@ import (
 )
 
 // LoadConfig 加载配置文件
-func LoadConfig() {
+func loadConfig() {
 	viper.AddConfigPath("./conf")
 	viper.SetConfigName("config")
 	viper.SetConfigType("yaml")

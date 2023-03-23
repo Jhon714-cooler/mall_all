@@ -34,6 +34,12 @@ type Es struct{
 	EsIndex	string `mapstructure:"EsIndex"`
 }
 
+type Qinue struct{
+	PhotoHost        string
+	ProductPhotoPath string
+	AvatarPath       string
+}
+
 
 
 // 文件上传相关路径配置

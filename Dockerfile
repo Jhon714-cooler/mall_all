@@ -1,11 +1,15 @@
 FROM golang:1.19 as builder
 
 ENV GO111MODULE=on \
-    GOPROXY=https://goproxy.cn,direct
+    CGO_ENABLED=0 \
+    GOOS=linux \
+    GOARCH=amd64\
+    GOPROXY=https://goproxy.cn,direct 
 
-WORKDIR /app
+WORKDIR /build
 COPY . .
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build  -ldflags="-w -s" -o main
+RUN go mod downloadd 
+RUN go build  -ldflags="-w -s" -o main . -t mall1.0
 RUN mkdir publish  \
     && cp main publish  \
     && cp -r conf publish

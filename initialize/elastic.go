@@ -7,7 +7,7 @@ import (
 	"github.com/olivere/elastic/v7"
 )
 
-func Elastic() {
+func es_init() {
 	e := global.Config.Es
 	log.Println(e.EsHost+":"+e.EsPort+"/")
 	client, err := elastic.NewClient(elastic.SetURL("http://"+e.EsHost+":"+e.EsPort+"/"))

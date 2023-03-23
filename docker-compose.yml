@@ -68,3 +68,22 @@ services:
     ports:
       - 9200:9200
     restart: always
+  minio1:
+    image: minio:latest
+    container_name: minio_1
+    restart: always
+    volumes:
+      - /home/minio/data:/data
+      - /home/minio/config:/root/.minio
+    ports:
+      - "9000:9000"
+      - "9090":"9090"
+    environment:
+      MINIO_ACCESS_KEY: minio
+      MINIO_SECRET_KEY: minio123
+    command: server http://minio{1...4}/data{1...2}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3

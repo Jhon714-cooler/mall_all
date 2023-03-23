@@ -13,5 +13,8 @@ func Router()  {
 	v1 := r.Group("api/v1")
 	{
 		v1.POST("user/register", api.Regist)
+		v1.POST("user/login", api.Login)
+
 	}
+	r.Run(":8081")
 }

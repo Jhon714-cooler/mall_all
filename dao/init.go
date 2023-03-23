@@ -2,6 +2,7 @@ package dao
 
 import (
 	"context"
+	"log"
 	"mall/global"
 	"time"
 
@@ -50,7 +51,12 @@ func Database(connRead, connWrite string) {
 			Replicas: []gorm.Dialector{mysql.Open(connWrite), mysql.Open(connWrite)}, // 读操作
 			Policy:   dbresolver.RandomPolicy{},                                      // sources/replicas 负载均衡策略
 		}))
-	migration()
+
+		exist := global.Db.Migrator().HasTable("user")
+		if  exist == false {
+			log.Println("初始化tables")
+			migration()
+		}
 }
 
 func NewDBClient(ctx context.Context) *gorm.DB {

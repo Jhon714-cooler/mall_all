@@ -1,6 +1,8 @@
 package models
 
 import (
+	"crypto/md5"
+	"fmt"
 	"gorm.io/gorm"
 )
 
@@ -16,4 +18,15 @@ type User struct {
 	Money          string
 }
 
-
+func SetPassWd(passwd string)(string)  {
+	return fmt.Sprintf("%x", md5.Sum([]byte(passwd)))
+}
+func (user *User)CheckPasswd(passwd string)bool  {
+	t := fmt.Sprintf("%x", md5.Sum([]byte(passwd)))
+	
+	return t == user.PasswordDigest
+}
+func (user *User) AvatarURL() string {
+	signedGetURL := user.Avatar
+	return signedGetURL
+}

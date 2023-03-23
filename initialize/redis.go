@@ -7,7 +7,7 @@ import (
 
 	"github.com/go-redis/redis"
 )
-func Redis() {
+func redis_init() {
 	
 	db,err := strconv.Atoi(global.Config.Redis.RedisDbName) //strconv.ParseInt
 	if err != nil {
