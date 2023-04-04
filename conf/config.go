@@ -4,10 +4,11 @@ package conf
 type Config struct {
 	Server       Server       `mapstructure:"server"`
 	Mysql        Mysql        `mapstructure:"mysql"`
-	Redis        Redis        `mapstructure:"Redis"`
-	Es			 Es           `mapstructure:"Es"`
-	Jwt			Jwt           `mapstructure:"Jwt"`
-	
+	Redis        Redis        `mapstructure:"redis"`
+	Es			 Es           `mapstructure:"es"`
+	Jwt			Jwt           `mapstructure:"jwt"`
+	Qiniu		Qiniu      	  `mapstructure:"qiniu"`
+	Email		Email		  `mapstructure:"email"`
 }
 
 // 服务启动端口号配置
@@ -34,10 +35,11 @@ type Es struct{
 	EsIndex	string `mapstructure:"EsIndex"`
 }
 
-type Qinue struct{
-	PhotoHost        string
-	ProductPhotoPath string
-	AvatarPath       string
+type Qiniu struct{
+	AccessKey string `mapstructure:"AccessKey"`
+	SecretKey string `mapstructure:"SerectKey"` 
+	Bucket string `mapstructure:"Bucket"`
+	ImgUrl string `mapstructure:"QiniuServer"`
 }
 
 
@@ -58,4 +60,10 @@ type Code2Session struct {
 	Code      string `mapstructure:"code"`
 	AppId     string `mapstructure:"appId"`
 	AppSecret string `mapstructure:"appSecret"`
+}
+type Email struct {
+	ValidEmail  string `mapstructure:"ValidEmail"`
+	SmtpHost	string `mapstructure:"SmtpHost"`
+	SmtpEmail	string `mapstructure:"SmtpEmail"`
+	SmtpPass	string `mapstructure:"SmPass"`
 }

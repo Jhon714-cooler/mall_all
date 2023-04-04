@@ -15,8 +15,8 @@ jwt:
 qiniu:
   AccessKey: tCoZnAbWbRBy--yZuDnA-ZdUdXL20YXeNBtoiJrW
   SerectKey: GdMqlREmJuQ4Fo-xlHnbTO8G6yqsrvP4EBTHU-p3
-  # Bucket = 
-  # QiniuServer = 
+  Bucket: tesla14
+  #QiniuServer = 
 email:
   ValidEmail: http://localhost:8080/#/vaild/email/
   SmtpHost: smtp.qq.com

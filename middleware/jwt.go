@@ -2,8 +2,10 @@ package middleware
 
 import (
 	"mall/global"
+	"mall/respond"
 	"time"
 
+	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt"
 )
 
@@ -14,6 +16,36 @@ type Claims struct {
 	Authority int    `json:"authority"`
 	jwt.StandardClaims
 }
+//jwt中间件
+func JWT()gin.HandlerFunc{
+	return func(ctx *gin.Context) {
+		code := 200
+		token := ctx.GetHeader("authorization")
+		if token == ""{
+			code = 403
+		}else{
+			claims,err :=ParseToken(token)
+			if err != nil {
+				code = respond.ErrorAuthCheckTokenFail
+			}else if time.Now().Unix() > claims.ExpiresAt{
+				code = respond.ErrorAuthCheckTokenTimeout
+			}
+		}
+		if code != 200{
+			ctx.JSON(200,
+			gin.H{
+				"Code":code,
+				"err":"token_err",
+			})
+			ctx.Abort()
+			return
+		}
+		ctx.Next()
+	}
+}
+
+
+
 func GenerateToken(userid uint,username string,authority int) (string,error) {
 	claims := Claims{
 		ID:userid,

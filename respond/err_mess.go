@@ -12,7 +12,7 @@ var MsgFlags = map[int]string{
 	ErrorNotExistUser:       "该用户不存在",
 	ErrorNotComparePassword: "账号密码错误",
 	ErrorUserNotFound:		 "无法找到用户",
-
+	
 	ErrorDatabase: "数据库操作出错,请重试",
 
 }

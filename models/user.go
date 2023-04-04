@@ -18,7 +18,7 @@ type User struct {
 	Money          string
 }
 
-func SetPassWd(passwd string)(string)  {
+func (user *User)SetPassWd(passwd string)(string)  {
 	return fmt.Sprintf("%x", md5.Sum([]byte(passwd)))
 }
 func (user *User)CheckPasswd(passwd string)bool  {

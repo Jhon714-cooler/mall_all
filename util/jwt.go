@@ -31,3 +31,33 @@ func VerifyToken(tokenString string) error {
 	})
 	return err
 }
+
+//邮箱验证
+
+type EmailClaims struct {
+	UserId	uint `json:"userid"`
+	UserEmail string `json:"useremail"`
+	UserPasswd string `json:"userpasswd"`
+	OperationType uint `json:"operationType"`
+	jwt.StandardClaims
+}
+func EmailGenrateToken(useremail,userpasswd string,  Operationtype,userid uint)(string, error)  {
+	emailclaims := EmailClaims{
+		UserId: userid,
+		UserEmail: useremail,
+		UserPasswd: userpasswd,
+		OperationType: Operationtype,
+		StandardClaims: jwt.StandardClaims{
+			ExpiresAt: time.Now().Unix() + 60*60,
+			Issuer: "Tesla",
+		},
+	}
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, emailclaims)
+	return token.SignedString(SigningKey)
+}
+func EmailVerifyToken(tokenString string) error {
+	_, err := jwt.ParseWithClaims(tokenString, &EmailClaims{}, func(token *jwt.Token) (interface{}, error) {
+		return SigningKey, nil
+	})
+	return err
+}

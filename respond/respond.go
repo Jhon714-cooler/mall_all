@@ -13,7 +13,7 @@ type Response struct {
 	Error  string      `json:"error"`
 }
 
-func Success (message string, data interface{},  c *gin.Context){
+func Success (message string, c *gin.Context){
 	c.JSON(http.StatusOK, Response{Code: 200,Message: message,})
 }
 

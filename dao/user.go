@@ -14,6 +14,16 @@ type UserDao struct {
 func NewUserDao(ctx context.Context) (*UserDao) {
 	return &UserDao{NewDBClient(ctx)}
 }
+// GetUserById 根据 id 获取用户
+func (dao *UserDao) GetUserById(uId uint) (user *models.User, err error) {
+	err = dao.DB.Model(&models.User{}).Where("id=?", uId).
+		First(&user).Error
+	return
+}
+
+func (dao *UserDao)UpdateByUseID(user *models.User,Uid uint)error  {
+	return global.Db.Model(&models.User{}).Where("id=?",Uid).Updates(&user).Error
+}
 // ExistOrNotByUserName 根据username判断是否存在该名字
 func (dao *UserDao)ExistOrNotByUserName(username string) (user *models.User, exist bool, err error) {
 	var count int64
